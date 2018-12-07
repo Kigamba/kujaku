@@ -31,11 +31,10 @@ import io.ona.kujaku.listeners.BoundsChangeListener;
 import io.ona.kujaku.listeners.OnLocationChanged;
 import io.ona.kujaku.test.shadows.ShadowConnectivityReceiver;
 import io.ona.kujaku.test.shadows.ShadowFileSource;
+import io.ona.kujaku.test.shadows.ShadowGLSurfaceViewMapRenderer;
 import io.ona.kujaku.test.shadows.ShadowGeoJsonSource;
 import io.ona.kujaku.test.shadows.ShadowMapRenderer;
-import io.ona.kujaku.test.shadows.ShadowMapView;
 import io.ona.kujaku.test.shadows.implementations.KujakuMapTestView;
-import io.ona.kujaku.test.shadows.ShadowGLSurfaceViewMapRenderer;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
