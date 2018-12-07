@@ -30,10 +30,7 @@ import io.ona.kujaku.callbacks.AddPointCallback;
 import io.ona.kujaku.listeners.BoundsChangeListener;
 import io.ona.kujaku.listeners.OnLocationChanged;
 import io.ona.kujaku.test.shadows.ShadowConnectivityReceiver;
-import io.ona.kujaku.test.shadows.ShadowFileSource;
-import io.ona.kujaku.test.shadows.ShadowGLSurfaceViewMapRenderer;
 import io.ona.kujaku.test.shadows.ShadowGeoJsonSource;
-import io.ona.kujaku.test.shadows.ShadowMapRenderer;
 import io.ona.kujaku.test.shadows.implementations.KujakuMapTestView;
 
 import static org.junit.Assert.assertEquals;
@@ -47,8 +44,7 @@ import static org.junit.Assert.assertTrue;
  */
 
 @Ignore
-@Config(shadows = {ShadowGeoJsonSource.class, ShadowConnectivityReceiver.class, ShadowFileSource.class,
-        ShadowGLSurfaceViewMapRenderer.class, ShadowMapRenderer.class})
+@Config(shadows = {ShadowGeoJsonSource.class, ShadowConnectivityReceiver.class})
 public class KujakuMapViewTest extends BaseTest {
 
     private KujakuMapTestView kujakuMapView;
