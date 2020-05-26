@@ -102,7 +102,7 @@ android {
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
         versionName this.version
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
     }
 
@@ -161,7 +161,7 @@ android {
 }
 
 dependencies { configuration ->
-    implementation "com.android.support:support-v4:${supportVersion}"
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation ("com.mapbox.mapboxsdk:mapbox-android-sdk:${mapboxSdkVersion}") {
         transitive = true;
         exclude group: 'com.android.support', module: 'support-v4'
@@ -181,8 +181,8 @@ dependencies { configuration ->
         exclude group: 'com.android.support', module: 'appcompat-v7'
     }
 
-    implementation "com.android.support:appcompat-v7:${supportVersion}"
-    implementation "com.android.support:design:${supportVersion}"
+    implementation 'androidx.appcompat:appcompat:1.0.0'
+    implementation 'com.google.android.material:material:1.0.0'
     implementation 'org.simpleframework:simple-xml:2.7.1'
     implementation 'com.jakewharton.threetenabp:threetenabp:1.1.1'
     implementation 'com.jakewharton.timber:timber:4.7.1'
@@ -208,8 +208,8 @@ private static void testDependencies(configuration) {
 }
 
 private static void infoWindowDependencies(instance, configuration) {
-    configuration.implementation "com.android.support:cardview-v7:${instance.supportVersion}"
-    configuration.implementation "com.android.support:recyclerview-v7:${instance.supportVersion}"
+    configuration.implementation "com.android.support:cardview-v7:28.0.0"
+    configuration.implementation "com.android.support:recyclerview-v7:28.0.0"
 }
 
 private static void customDependencies(instance, configuration) {

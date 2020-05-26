@@ -1,5 +1,6 @@
 package io.ona.kujaku.services;
 
+import android.annotation.SuppressLint;
 import android.app.NotificationManager;
 import android.app.Service;
 import android.content.Context;
@@ -8,10 +9,9 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Looper;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.annotation.RestrictTo;
-import android.support.v4.content.LocalBroadcastManager;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.RestrictTo;
 import android.text.TextUtils;
 import android.text.format.Formatter;
 import android.util.Log;
@@ -25,6 +25,7 @@ import com.mapbox.mapboxsdk.offline.OfflineRegionStatus;
 
 import org.json.JSONException;
 
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import io.ona.kujaku.BuildConfig;
 import io.ona.kujaku.R;
 import io.ona.kujaku.data.MapBoxDeleteTask;
@@ -152,6 +153,7 @@ public class MapboxOfflineDownloaderService extends Service implements OfflineRe
         super();
     }
 
+    @SuppressLint("RestrictedApi")
     @Override
     public int onStartCommand(@Nullable Intent intent, int flags, int startId) {
         serviceHandler = new Handler(Looper.myLooper());
@@ -177,6 +179,7 @@ public class MapboxOfflineDownloaderService extends Service implements OfflineRe
      * @param intent Intent passed when the service was called {@link Context#startService(Intent)}
      * @return {@code TRUE} if the OfflineMapTask was successfully saved, {@code FALSE} if the OfflineMapTask could not be saved
      */
+    @SuppressLint("RestrictedApi")
     protected boolean persistOfflineMapTask(@Nullable Intent intent) {
         persistOfflineMapTaskCalled = true;
         if (intent == null) {
@@ -308,6 +311,7 @@ public class MapboxOfflineDownloaderService extends Service implements OfflineRe
      * A {@link MapBoxOfflineQueueTask#TASK_TYPE_DOWNLOAD} will either be RESUMED, OBSERVED if RUNNING
      * , IGNORED(thus FAILING if it does) or DOWNLOADED.
      */
+    @SuppressLint("RestrictedApi")
     private void performNextTask() {
         performNextTaskCalled = true;
 
@@ -442,7 +446,7 @@ public class MapboxOfflineDownloaderService extends Service implements OfflineRe
 
     /**
      * Sends a local broadcast with the result of a service operation & mapName. To capture the
-     * local broadcast messages, you need to use the {@link LocalBroadcastManager} to register a
+     * local broadcast messages, you need to use the {@link androidx.localbroadcastmanager.content.LocalBroadcastManager} to register a
      * {@link android.content.BroadcastReceiver} for action {@link Constants#INTENT_ACTION_MAP_DOWNLOAD_SERVICE_STATUS_UPDATES}
      * <p>
      * The broadcast has the following extras:
@@ -586,6 +590,7 @@ public class MapboxOfflineDownloaderService extends Service implements OfflineRe
      *
      * @param offlineRegion The {@link OfflineRegion} to observe
      */
+    @SuppressLint("RestrictedApi")
     private void observeOfflineRegion(@NonNull final OfflineRegion offlineRegion) {
         //Do not remove the line below!!!
         offlineRegion.setDownloadState(OfflineRegion.STATE_ACTIVE);
