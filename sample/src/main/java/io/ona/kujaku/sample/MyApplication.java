@@ -1,10 +1,7 @@
 package io.ona.kujaku.sample;
 
-import android.support.multidex.MultiDexApplication;
+import androidx.multidex.MultiDexApplication;
 
-import com.crashlytics.android.Crashlytics;
-
-import io.fabric.sdk.android.Fabric;
 import io.ona.kujaku.KujakuLibrary;
 import io.ona.kujaku.sample.repository.KujakuRepository;
 import io.ona.kujaku.sample.repository.PointsRepository;
@@ -30,9 +27,6 @@ public class MyApplication extends MultiDexApplication {
     public void onCreate() {
         super.onCreate();
         application = this;
-
-        // activate Crashlytics
-        Fabric.with(this, new Crashlytics());  // initialize fabric
 
         KujakuLibrary.setEnableMapDownloadResume(false);
         KujakuLibrary.init(this); // must initialize KujakuLibrary
