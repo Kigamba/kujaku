@@ -12,3 +12,4 @@
 
 **/jacoco.exec
 **/*-journal
+**/google-*.json
