@@ -3,7 +3,8 @@ package io.ona.kujaku.views;
 import android.content.Context;
 import android.graphics.Color;
 import android.location.Location;
-import androidx.test.platform.app.InstrumentationRegistry;
+
+import androidx.test.InstrumentationRegistry;
 import androidx.test.rule.UiThreadTestRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import android.view.View;
