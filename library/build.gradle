@@ -92,6 +92,9 @@ android {
     compileSdkVersion rootProject.ext.compileSdkVersion
     buildToolsVersion rootProject.ext.buildToolsVersion
 
+    useLibrary 'android.test.runner'
+
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -200,6 +203,15 @@ private static void testDependencies(configuration) {
     configuration.testImplementation 'org.robolectric:shadows-support-v4:3.4-rc2'
 
     configuration.testImplementation 'org.mockito:mockito-inline:2.25.0'
+
+    // AndroidJUnitRunner and JUnit Rules
+    configuration.androidTestImplementation 'androidx.test:runner:1.1.0'
+    configuration.androidTestImplementation 'androidx.test:rules:1.1.0'
+
+    // Assertions
+    configuration.androidTestImplementation 'androidx.test.ext:junit:1.0.0'
+    configuration.androidTestImplementation 'androidx.test.ext:truth:1.0.0'
+    configuration.androidTestImplementation 'com.google.truth:truth:0.42'
 
     configuration.androidTestImplementation 'org.mockito:mockito-android:2.7.22'
     configuration.androidTestImplementation ('com.android.support.test.espresso:espresso-core:2.2.2', {
