@@ -7,7 +7,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Handler;
-import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 
 import com.mapbox.mapboxsdk.geometry.LatLng;
@@ -42,6 +41,7 @@ import java.util.Calendar;
 import java.util.UUID;
 import java.util.concurrent.CountDownLatch;
 
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import io.ona.kujaku.BuildConfig;
 import io.ona.kujaku.data.MapBoxDeleteTask;
 import io.ona.kujaku.data.MapBoxDownloadTask;
