@@ -9,7 +9,11 @@ allprojects {
 }
 
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
 apply plugin: 'jacoco'
+// Apply the Google Services plugin (if it's not there already).
+apply plugin: 'com.google.gms.google-services'
 apply plugin: 'com.google.firebase.crashlytics'
 
 
@@ -175,6 +179,8 @@ dependencies { configuration ->
     implementation 'net.zetetic:android-database-sqlcipher:3.5.9@aar'
     implementation group: 'org.apache.commons', name: 'commons-lang3', version: '3.0'
 
+    // Recommended: Add the Firebase SDK for Google Analytics.
+    //implementation 'com.google.firebase:firebase-analytics:17.4.2'
 
     // Add the Firebase Crashlytics SDK.
     implementation 'com.google.firebase:firebase-crashlytics:17.0.0'
@@ -202,6 +208,8 @@ dependencies { configuration ->
     androidTestImplementation 'androidx.test.ext:junit:1.0.0'
     androidTestImplementation 'androidx.test.ext:truth:1.0.0'
     androidTestImplementation 'com.google.truth:truth:0.42'
+    implementation "androidx.core:core-ktx:1.3.0"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
 }
 
@@ -228,6 +236,7 @@ private static void developmentKujakuModulesImport(instance, configuration) {
         exclude group: 'com.android.support', module: 'support-annotations'
         exclude group: 'com.android.support', module: 'support-fragment'
     }
+    configuration.implementation 'com.mapbox.mapboxsdk:mapbox-sdk-turf:4.9.0'
 
     configuration.implementation "com.mapbox.mapboxsdk:mapbox-android-plugin-annotation-v7:${instance.mapboxAnnotationPluginVersion}"
 }
@@ -261,4 +270,7 @@ task jacocoTestReport(type: JacocoReport, dependsOn: ['testDebugUnitTest', 'crea
     executionData = fileTree(dir: project.buildDir, includes: [
             'jacoco/testDebugUnitTest.exec', 'outputs/code-coverage/connected/*coverage.ec'
     ])
+}
+repositories {
+    mavenCentral()
 }

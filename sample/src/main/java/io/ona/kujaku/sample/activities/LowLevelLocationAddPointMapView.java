@@ -9,14 +9,21 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
+import com.mapbox.geojson.Feature;
+import com.mapbox.geojson.Geometry;
+import com.mapbox.geojson.Point;
+import com.mapbox.mapboxsdk.geometry.LatLng;
 import com.mapbox.mapboxsdk.maps.MapboxMap;
 import com.mapbox.mapboxsdk.maps.OnMapReadyCallback;
 import com.mapbox.mapboxsdk.maps.Style;
 
 import org.json.JSONObject;
 
+import java.util.UUID;
+
 import es.dmoral.toasty.Toasty;
 import io.ona.kujaku.callbacks.OnLocationServicesEnabledCallBack;
+import io.ona.kujaku.layers.DataLayer;
 import io.ona.kujaku.listeners.OnLocationChanged;
 import io.ona.kujaku.sample.BuildConfig;
 import io.ona.kujaku.sample.R;
@@ -26,6 +33,7 @@ public class LowLevelLocationAddPointMapView extends BaseNavigationDrawerActivit
 
     private static final String TAG = LowLevelLocationAddPointMapView.class.getName();
     private KujakuMapView kujakuMapView;
+    private DataLayer dataLayer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +41,7 @@ public class LowLevelLocationAddPointMapView extends BaseNavigationDrawerActivit
 
         kujakuMapView = findViewById(R.id.kmv_lowLevelLocationAddPointMapView_mapView);
         kujakuMapView.onCreate(savedInstanceState);
+        dataLayer = new DataLayer();
 
         Button doneBtn = findViewById(R.id.btn_lowLevelLocationAddPointMapView_doneBtn);
         Button goToMyLocationBtn = findViewById(R.id.btn_lowLevelLocationAddPointMapView_myLocationBtn);
@@ -80,6 +89,18 @@ public class LowLevelLocationAddPointMapView extends BaseNavigationDrawerActivit
             @Override
             public void onMapReady(@NonNull MapboxMap mapboxMap) {
                 mapboxMap.setStyle(Style.MAPBOX_STREETS);
+                kujakuMapView.addLayer(dataLayer);
+                mapboxMap.addOnMapClickListener(new MapboxMap.OnMapClickListener() {
+                    @Override
+                    public boolean onMapClick(@NonNull LatLng point) {
+
+                        Feature feature = Feature.fromGeometry(Point.fromLngLat(point.getLongitude(), point.getLatitude()));
+                        feature.addStringProperty("id", UUID.randomUUID().toString());
+
+                        dataLayer.addFeature(feature);
+                        return true;
+                    }
+                });
             }
         });
     }
