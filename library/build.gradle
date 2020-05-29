@@ -1,4 +1,6 @@
 apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-android'
 apply plugin: 'jacoco'
 
 buildscript {
@@ -17,6 +19,7 @@ allprojects {
     }
 }
 
+apply plugin: 'kotlin-kapt'
 apply plugin: 'realm-android'
 apply plugin: 'com.jfrog.bintray'
 apply plugin: 'maven-publish'
@@ -195,6 +198,8 @@ dependencies { configuration ->
     infoWindowDependencies(this, configuration)
     locationDependencies(configuration)
     testDependencies(configuration)
+    implementation "androidx.core:core-ktx:1.3.0"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }
 
 private static void testDependencies(configuration) {
@@ -266,4 +271,7 @@ task jacocoTestReport(type: JacocoReport, dependsOn: ['testDebugUnitTest', 'crea
 
 configurations {
     all*.exclude group: 'net.sf.kxml', module: 'kxml2'
+}
+repositories {
+    mavenCentral()
 }
