@@ -18,7 +18,6 @@ import org.json.JSONObject;
 import es.dmoral.toasty.Toasty;
 import io.ona.kujaku.callbacks.OnLocationServicesEnabledCallBack;
 import io.ona.kujaku.listeners.OnLocationChanged;
-import io.ona.kujaku.sample.BuildConfig;
 import io.ona.kujaku.sample.R;
 import io.ona.kujaku.views.KujakuMapView;
 
